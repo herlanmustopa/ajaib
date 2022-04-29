@@ -19,7 +19,6 @@ class AccountPopover extends React.Component {
   }
 
   render() {
-
     const theme = createTheme({
       palette: {
         myBlue: {
@@ -48,7 +47,7 @@ class AccountPopover extends React.Component {
             sx={{ color: "text.secondary" }}
             noWrap
           >
-            Hai Gaes
+            {/* Hai Gaes */}
             {/* {"Halo, " + username} */}
           </Typography>
           <Typography variant="caption" sx={{ color: "text.secondary" }} noWrap>

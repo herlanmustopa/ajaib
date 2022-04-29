@@ -24,6 +24,7 @@ export default function ChannelManagement() {
   // const [data, setData] = useState([]);
   // const [loading, setLoading] = useState(false);
 
+
   return (
     <>
       <Container sx={{ mt: -5 }} maxWidth={false}>
@@ -40,24 +41,14 @@ export default function ChannelManagement() {
           >
             <Stack>
               <Typography variant="h6" sx={{ mt: 4 }}>
-                List Daftar Ikan
-              </Typography>
-              <Typography variant="caption" sx={{ mb: 1 }}>
-                Daftar ikan yang tersedia dan dikelola dengan baik oleh tim
-                Efishery
+                List Data
               </Typography>
             </Stack>
-
-            {/* <Stack direction="row" alignItems="center">
-              <AddData isVisible={showModalAdd} handleClose={closeModalAdd} />
-              <DialogFilter
-                isVisible={showModalAdd}
-                handleClose={closeModalAdd}
-              />
-            </Stack> */}
           </Stack>
           <Divider sx={{ mb: 2 }} />
           <TableData sx={{ mb: 2 }} />
+          <Divider sx={{ mb: 2 }} />
+       
           {/* <Stack width="200" sx={{ px: 2 }}>
             <Header
               search={search}

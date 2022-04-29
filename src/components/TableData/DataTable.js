@@ -1,21 +1,66 @@
 import React, { Component } from "react";
-import { Table, Button } from "reactstrap";
+import { Table } from "reactstrap";
 
 class DataTable extends Component {
   render() {
     const items = this.props.items.map((item) => {
       return (
-        <tr
-        // key={item.id}
-        >
-          {/* <th scope="row">{item.id}</th> */}
-          <td>{item.name.first + " " + item.name.last}</td>
-          <td>{item.login.username}</td>
-          <td>{item.gender}</td>
-          <td>{item.email}</td>
-          <td>{item.registered.date}</td>
-          {/* <td>{item.username}</td>
-          <td>{item.email}</td> */}
+        <tr key={item.id.value}>
+          <td
+            style={{
+              height: "50px",
+              width: "200px",
+              alignItems: "center",
+              justifyItems: "center",
+              textAlign: "center",
+            }}
+          >
+            {item.name.first + " " + item.name.last}
+          </td>
+          <td
+            style={{
+              height: "50px",
+              width: "200px",
+              alignItems: "center",
+              justifyItems: "center",
+              textAlign: "center",
+            }}
+          >
+            {item.login.username}
+          </td>
+          <td
+            style={{
+              height: "50px",
+              width: "200px",
+              alignItems: "center",
+              justifyItems: "center",
+              textAlign: "center",
+            }}
+          >
+            {item.gender}
+          </td>
+          <td
+            style={{
+              height: "50px",
+              width: "400px",
+              alignItems: "center",
+              justifyItems: "center",
+              textAlign: "center",
+            }}
+          >
+            {item.email}
+          </td>
+          <td
+            style={{
+              height: "50px",
+              width: "400px",
+              alignItems: "center",
+              justifyItems: "center",
+              textAlign: "center",
+            }}
+          >
+            {item.registered.date}
+          </td>
         </tr>
       );
     });
