@@ -2,7 +2,7 @@
 
 A brief description of what this project does and who it's for
 
-<img  src="/public/ajaib.png" width="200" height="200" alt="AJAIB"/>
+<img  src="/public/ajaib.png" width="100" height="100" alt="AJAIB"/>
 
 ## Used By
 
@@ -18,9 +18,13 @@ We a full stack developer... | HaHaHaHa I ❤️ myJob
 
 - [@herlanmustopa](https://www.github.com/herlanmustopa)
 
+## link Publish
+
+- [@Ajaib-herlanmustopa](https://ajaib-herlanmustopa.netlify.app/)
+
 ## Tech Stack
 
-**Client:** React, Redux, Material UI
+**Client:** React, Material UI
 
 ## Run Locally
 
