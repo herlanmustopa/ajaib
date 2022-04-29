@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Row, Col } from "reactstrap";
+import { Container } from "reactstrap";
 
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -8,13 +8,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import {
-  TableFooter,
-  TextField,
-  Autocomplete,
-  Stack,
-  Button,
-} from "@mui/material";
+import { TableFooter, TextField, Autocomplete, Stack } from "@mui/material";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import TablePagination from " @material-ui/core/TablePagination";
 // import PaginationItem from "@mui/material/PaginationItem";
@@ -140,13 +134,6 @@ class App extends Component {
                 // this.getItemsNames();
               }}
             />
-            {/* <ul>
-            {elements
-              .filter((e) => e.includes(filterStr))
-              .map((e) => (
-                <li key={e}>{e}</li>
-              ))}
-          </ul> */}
           </div>
           <div>
             <button
@@ -171,13 +158,6 @@ class App extends Component {
               sx={{ width: 300, mx: 2 }}
               renderInput={(params) => <TextField {...params} label="Gender" />}
             />
-            {/* <ul>
-            {elements
-              .filter((e) => e.includes(filterStr))
-              .map((e) => (
-                <li key={e}>{e}</li>
-              ))}
-          </ul> */}
           </div>
           <div>
             <button onClick={this.resetFilter}>Reset Filter</button>
@@ -306,19 +286,26 @@ class App extends Component {
                 />
               </TableRow>
             </TableFooter>
-            {/* <TablePagination
-              component="div"
-              count={this.state.totalRows}
-              page={this.state.page}
-              onPageChange={this.handleChangePage}
-              onRowsPerPageChange={this.handleChangeRowsPerPage}
-              rowsPerPage={this.state.rowsPerPage}
-            /> */}
           </Container>
         </div>
       </>
     );
   }
 }
+
+// Class Super
+class Animal { 
+  walk() {
+    console.log(`${this.constructor.name} walk!`);
+  }
+}
+
+// subClass with extends
+class Cat extends Animal {
+  walk() {
+    console.log(`${this.constructor.name} walked!`);
+  }
+}
+
 
 export default App;
