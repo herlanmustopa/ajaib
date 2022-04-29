@@ -63,9 +63,9 @@ class App extends Component {
       })
       .catch((err) => console.log(err));
   };
-  getItemsGender() {
+  getItemsGender(value) {
     // let url = `https://randomuser.me/api/?results=20&inc=gender${this.state.getGender}`;
-    let url = `https://randomuser.me/api/?gender=${this.state.getGender}`;
+    let url = `https://randomuser.me/api/?gender=${value}`;
 
     console.log("DATA NI" + url);
     fetch(url)
@@ -149,11 +149,11 @@ class App extends Component {
               disablePortal
               id="combo-box-demo"
               options={listgender}
-              value={this.state.getGender}
-              onChange={(event, newValue) => {
-                this.setState({ getGender: newValue });
-                this.getItemsGender();
-              }}
+              // value={this.state.getGender}
+              // onChange={(event, newValue) => {
+              //   this.getItemsGender(newValue);
+              // }}
+              onChange={(event, value) => this.getItemsGender(value)}
               size="small"
               sx={{ width: 300, mx: 2 }}
               renderInput={(params) => <TextField {...params} label="Gender" />}
@@ -293,19 +293,40 @@ class App extends Component {
   }
 }
 
-// Class Super
-class Animal { 
-  walk() {
-    console.log(`${this.constructor.name} walk!`);
+class Animal {
+  constructor(name, color) {
+    this.name = name;
+    this.color = color;
   }
+  detail = () => {
+    return this.name + " " + this.color;
+  };
 }
 
-// subClass with extends
-class Cat extends Animal {
-  walk() {
-    console.log(`${this.constructor.name} walked!`);
-  }
+const animal = new Animal("Dog", "Black");
+console.log(animal.detail());
+
+// closure function
+function outerFunction(param) {
+  var variableInOuterFunction = 10;
+
+  return function innerFunction() {
+    console.log(variableInOuterFunction);
+    console.log(param);
+  };
 }
 
+console.log(outerFunction("Hello")());
 
+
+// module pattern
+var myModule = (function () {
+  return {
+    publicMethod: function () {
+      console.log("public method");
+    },
+  };
+})();
+
+console.log(myModule.publicMethod());
 export default App;
