@@ -8,7 +8,13 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TablePagination from "@mui/material/TablePagination";
 import TableRow from "@mui/material/TableRow";
-import { TableFooter, TextField, Autocomplete, Stack } from "@mui/material";
+import {
+  TableFooter,
+  TextField,
+  Autocomplete,
+  Stack,
+  Button,
+} from "@mui/material";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import TablePagination from " @material-ui/core/TablePagination";
 // import PaginationItem from "@mui/material/PaginationItem";
@@ -18,7 +24,7 @@ class App extends Component {
   state = {
     items: [],
     page: 0,
-    rowsPerPage: 100,
+    rowsPerPage: 20,
     totalRows: 0,
     getGender: "",
   };
@@ -37,14 +43,34 @@ class App extends Component {
         this.setState({
           items: items.results,
           totalRows: items.info.results,
+          // getGender: "",
         });
       })
       .catch((err) => console.log(err));
   }
-  getItemsGender() {
-    let url = `https://randomuser.me/api/?gender=${this.state.getGender}`;
+  resetFilter = () => {
+    // this.state.getGender = "";
+    let url = `https://randomuser.me/api/?page=${this.state.page + 1}&results=${
+      this.state.rowsPerPage
+    }&seed=abc`;
     // let url = `https://randomuser.me/api/?results=20`;
     // let url = "https://jsonplaceholder.typicode.com/users";
+    console.log("DATA NI" + url);
+    fetch(url)
+      .then((res) => res.json())
+      .then((items) => {
+        console.log(items.results, "items");
+        this.setState({
+          getGender: "",
+          items: items.results,
+          totalRows: items.info.results,
+        });
+      })
+      .catch((err) => console.log(err));
+  };
+  getItemsGender() {
+    let url = `https://randomuser.me/api/?gender=${this.state.getGender}`;
+
     console.log("DATA NI" + url);
     fetch(url)
       .then((res) => res.json())
@@ -97,18 +123,18 @@ class App extends Component {
               ))}
           </ul> */}
           </div>
+          {/* {this.state.getGender} */}
           <div>
             <Autocomplete
               disablePortal
               id="combo-box-demo"
               options={listgender}
               onChange={(event, newValue) => {
-                console.log(newValue);
                 this.setState({ getGender: newValue });
                 this.getItemsGender();
               }}
               size="small"
-              sx={{ width: 300 }}
+              sx={{ width: 300, mr: 2 }}
               renderInput={(params) => <TextField {...params} label="Gender" />}
             />
             {/* <ul>
@@ -118,6 +144,10 @@ class App extends Component {
                 <li key={e}>{e}</li>
               ))}
           </ul> */}
+          </div>
+          <div>
+            <button onClick={this.resetFilter}>Reset Filter</button>
+            {/* <Button onClick={this.resetFilter()}>Reset Filter</Button> */}
           </div>
         </Stack>
         <div>
@@ -139,17 +169,6 @@ class App extends Component {
                     <TableCell align="center">GENDER</TableCell>
                     <TableCell align="center">REGISTERED DATE</TableCell>
                   </TableRow>
-                  {/* <TableRow>
-                    {this.state.items.map((column) => (
-                      <TableCell
-                        key={column.id}
-                        // align={column.align}
-                        style={{ top: 57, minWidth: column.minWidth }}
-                      >
-                        {column.email}
-                      </TableCell>
-                    ))}
-                  </TableRow> */}
                 </TableHead>
                 <TableBody>
                   {this.state.items
@@ -161,70 +180,73 @@ class App extends Component {
                     .map((column, index) => {
                       return (
                         <>
-                          {/* {this.state.items.map((column, index) => ( */}
-                          <TableRow key={column.id}>
-                            <TableCell
-                              key={column.id}
-                              align={column.align}
-                              style={{
-                                height: "50px",
-                                width: "150px",
-                                alignItems: "center",
-                                justifyItems: "center",
-                                textAlign: "center",
-                              }}
-                            >
-                              {column.login.username}
-                            </TableCell>
-                            <TableCell
-                              key={column.id}
-                              style={{
-                                height: "50px",
-                                width: "150px",
-                                alignItems: "center",
-                                justifyItems: "center",
-                                textAlign: "center",
-                              }}
-                            >
-                              {column.name.first} {column.name.last}
-                            </TableCell>
-                            <TableCell
-                              key={column.id}
-                              style={{
-                                height: "50px",
-                                width: "150px",
-                                alignItems: "center",
-                                justifyItems: "center",
-                                textAlign: "center",
-                              }}
-                            >
-                              {column.email}
-                            </TableCell>
-                            <TableCell
-                              key={column.id}
-                              style={{
-                                height: "50px",
-                                width: "150px",
-                                alignItems: "center",
-                                justifyItems: "center",
-                                textAlign: "center",
-                              }}
-                            >
-                              {column.gender}
-                            </TableCell>
-                            <TableCell
-                              key={column.id}
-                              style={{
-                                height: "50px",
-                                width: "150px",
-                                alignItems: "center",
-                                justifyItems: "center",
-                                textAlign: "center",
-                              }}
-                            >
-                              {column.registered.date}
-                            </TableCell>
-                          </TableRow>
+                          {column !== "" ? (
+                            <TableRow key={column.id}>
+                              <TableCell
+                                key={column.id}
+                                align={column.align}
+                                style={{
+                                  height: "50px",
+                                  width: "150px",
+                                  alignItems: "center",
+                                  justifyItems: "center",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {column.login.username}
+                              </TableCell>
+                              <TableCell
+                                key={column.id}
+                                style={{
+                                  height: "50px",
+                                  width: "150px",
+                                  alignItems: "center",
+                                  justifyItems: "center",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {column.name.first} {column.name.last}
+                              </TableCell>
+                              <TableCell
+                                key={column.id}
+                                style={{
+                                  height: "50px",
+                                  width: "150px",
+                                  alignItems: "center",
+                                  justifyItems: "center",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {column.email}
+                              </TableCell>
+                              <TableCell
+                                key={column.id}
+                                style={{
+                                  height: "50px",
+                                  width: "150px",
+                                  alignItems: "center",
+                                  justifyItems: "center",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {column.gender}
+                              </TableCell>
+                              <TableCell
+                                key={column.id}
+                                style={{
+                                  height: "50px",
+                                  width: "150px",
+                                  alignItems: "center",
+                                  justifyItems: "center",
+                                  textAlign: "center",
+                                }}
+                              >
+                                {column.registered.date}
+                              </TableCell>
+                            </TableRow>
+                          ) : (
+                            <div>{column.error}</div>
+                          )}
                         </>
                       );
                     })}
