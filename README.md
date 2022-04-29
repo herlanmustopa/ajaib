@@ -1,10 +1,8 @@
-# Dynamic Chanel
+# Ajaib
 
 A brief description of what this project does and who it's for
 
-## CROCS | Enhancement TiBS 2.0 Prepaid Capabilities
-
-<img src="/public/ajaib.png" alt="AJAIB"/>
+<img  src="/public/ajaib.png" width="200" height="200" alt="AJAIB"/>
 
 ## Used By
 
