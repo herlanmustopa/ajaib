@@ -20,22 +20,20 @@ We a full stack developer... | HaHaHaHa I ❤️ myJob
 
 ## Tech Stack
 
-**Client:** React, Redux, Material UI, graphQL Apollo Client
-
-**Server:** Node, Express, graphQL
+**Client:** React, Redux, Material UI
 
 ## Run Locally
 
 Clone the project
 
 ```bash
-  git clone https://gitlabin.myih.telkom.co.id/dynamic-channel/dynamic-channel-fe.git
+  git clone https://github.com/herlanmustopa/ajaib.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd <my-project>
 ```
 
 Install dependencies
