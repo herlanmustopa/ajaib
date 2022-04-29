@@ -24,7 +24,6 @@ export default function ChannelManagement() {
   // const [data, setData] = useState([]);
   // const [loading, setLoading] = useState(false);
 
-
   return (
     <>
       <Container sx={{ mt: -5 }} maxWidth={false}>
@@ -48,7 +47,7 @@ export default function ChannelManagement() {
           <Divider sx={{ mb: 2 }} />
           <TableData sx={{ mb: 2 }} />
           <Divider sx={{ mb: 2 }} />
-       
+
           {/* <Stack width="200" sx={{ px: 2 }}>
             <Header
               search={search}

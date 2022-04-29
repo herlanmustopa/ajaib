@@ -27,6 +27,7 @@ class App extends Component {
     rowsPerPage: 20,
     totalRows: 0,
     getGender: "",
+    getNames: "",
   };
 
   getItems() {
@@ -50,6 +51,7 @@ class App extends Component {
   }
   resetFilter = () => {
     // this.state.getGender = "";
+    this.setState({ getGender: "" });
     let url = `https://randomuser.me/api/?page=${this.state.page + 1}&results=${
       this.state.rowsPerPage
     }&seed=abc`;
@@ -61,7 +63,6 @@ class App extends Component {
       .then((items) => {
         console.log(items.results, "items");
         this.setState({
-          getGender: "",
           items: items.results,
           totalRows: items.info.results,
         });
@@ -69,6 +70,7 @@ class App extends Component {
       .catch((err) => console.log(err));
   };
   getItemsGender() {
+    // let url = `https://randomuser.me/api/?results=20&inc=gender${this.state.getGender}`;
     let url = `https://randomuser.me/api/?gender=${this.state.getGender}`;
 
     console.log("DATA NI" + url);
@@ -83,6 +85,21 @@ class App extends Component {
       })
       .catch((err) => console.log(err));
   }
+  // getItemsNames() {
+  //   let url = `https://randomuser.me/api/?results=5&inc=${this.state.getNames},${this.state.getGender},nat&noinfo`;
+
+  //   console.log("DATA NI" + url);
+  //   fetch(url)
+  //     .then((res) => res.json())
+  //     .then((items) => {
+  //       console.log(items.results, "items");
+  //       this.setState({
+  //         items: items.results,
+  //         totalRows: items.info.results,
+  //       });
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
 
   componentDidMount() {
     this.getItems();
@@ -97,6 +114,9 @@ class App extends Component {
     console.log(newPage, "newPage");
     this.setState({ page: newPage });
   };
+  // onChange = useAsyncDebounce((value) => {
+  //   setGlobalFilter(value || undefined);
+  // }, 200);
 
   // handleChangePage = (event, newPage) => {
   //   setPage(newPage);
@@ -108,12 +128,17 @@ class App extends Component {
       <>
         <Stack direction="row">
           <div>
+            {this.state.getNames}
             <TextField
               id="outlined-basic"
               label="Search"
               variant="outlined"
               size="small"
               sx={{ mr: 2 }}
+              onChange={(event, newValue) => {
+                this.setState({ getNames: event.target.value });
+                // this.getItemsNames();
+              }}
             />
             {/* <ul>
             {elements
@@ -123,18 +148,27 @@ class App extends Component {
               ))}
           </ul> */}
           </div>
+          <div>
+            <button
+            // onClick={this.getItemsNames}
+            >
+              Searching
+            </button>
+            {/* <Button onClick={this.resetFilter()}>Reset Filter</Button> */}
+          </div>
           {/* {this.state.getGender} */}
           <div>
             <Autocomplete
               disablePortal
               id="combo-box-demo"
               options={listgender}
+              value={this.state.getGender}
               onChange={(event, newValue) => {
                 this.setState({ getGender: newValue });
                 this.getItemsGender();
               }}
               size="small"
-              sx={{ width: 300, mr: 2 }}
+              sx={{ width: 300, mx: 2 }}
               renderInput={(params) => <TextField {...params} label="Gender" />}
             />
             {/* <ul>

@@ -53,7 +53,7 @@ class DataTable extends Component {
           <td
             style={{
               height: "50px",
-              width: "400px",
+              width: "00px",
               alignItems: "center",
               justifyItems: "center",
               textAlign: "center",
