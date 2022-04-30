@@ -118,7 +118,7 @@ class App extends Component {
   // };
 
   render() {
-    const listgender = ["Female", "Male"];
+    const listgender = ["female", "male"];
     return (
       <>
         <Stack direction="row">
@@ -153,10 +153,10 @@ class App extends Component {
               // onChange={(event, newValue) => {
               //   this.getItemsGender(newValue);
               // }}
-              onChange={(event, value) => this.getItemsGender(value)}
-              // onChange={(event, value) =>
-              //   this.setState({ getGender: event.target.value })
-              // }
+              // onChange={(event, value) => this.getItemsGender(value)}
+              onSelect={(event, value) =>
+                this.setState({ getSearch: event.target.value })
+              }
               size="small"
               sx={{ width: 300, mx: 2 }}
               renderInput={(params) => <TextField {...params} label="Gender" />}
@@ -203,6 +203,9 @@ class App extends Component {
                           .toLowerCase()
                           .includes(this.state.getSearch.toLowerCase()) ||
                         item.email
+                          .toLowerCase()
+                          .includes(this.state.getSearch.toLowerCase()) ||
+                        item.gender
                           .toLowerCase()
                           .includes(this.state.getSearch.toLowerCase())
                         //    ||
