@@ -143,6 +143,7 @@ class App extends Component {
               Searching
             </button>
           </div> */}
+          {/* {this.state.getGender} */}
           <div>
             <Autocomplete
               disablePortal
@@ -153,6 +154,9 @@ class App extends Component {
               //   this.getItemsGender(newValue);
               // }}
               onChange={(event, value) => this.getItemsGender(value)}
+              // onChange={(event, value) =>
+              //   this.setState({ getGender: event.target.value })
+              // }
               size="small"
               sx={{ width: 300, mx: 2 }}
               renderInput={(params) => <TextField {...params} label="Gender" />}
@@ -201,6 +205,10 @@ class App extends Component {
                         item.email
                           .toLowerCase()
                           .includes(this.state.getSearch.toLowerCase())
+                        //    ||
+                        // item.gender
+                        //   .toUpperCase()
+                        //   .includes(this.state.getGender.toUpperCase())
                       );
                     })
                     .map((column, index) => {
