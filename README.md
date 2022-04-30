@@ -1,6 +1,6 @@
 # Ajaib
 
-A brief description of what this project does and who it's for
+project testing online recrutiment in Ajaib
 
 <img  src="/public/ajaib.png" width="100" height="100" alt="AJAIB"/>
 

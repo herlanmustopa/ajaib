@@ -22,6 +22,7 @@ class App extends Component {
     totalRows: 0,
     getGender: "",
     getNames: "",
+    getSearch: "",
   };
 
   getItems() {
@@ -130,7 +131,7 @@ class App extends Component {
               size="small"
               sx={{ mr: 2 }}
               onChange={(event, newValue) => {
-                this.setState({ getNames: event.target.value });
+                this.setState({ getSearch: event.target.value });
                 // this.getItemsNames();
               }}
             />
@@ -186,11 +187,24 @@ class App extends Component {
                 </TableHead>
                 <TableBody>
                   {this.state.items
-                    .slice(
-                      this.state.page * this.state.rowsPerPage,
-                      this.state.page * this.state.rowsPerPage +
-                        this.state.rowsPerPage
-                    )
+                    // .slice(
+                    //   this.state.page * this.state.rowsPerPage,
+                    //   this.state.page * this.state.rowsPerPage +
+                    //     this.state.rowsPerPage
+                    // )
+                    .filter((item) => {
+                      return (
+                        item.name.first
+                          .toLowerCase()
+                          .includes(this.state.getSearch.toLowerCase()) ||
+                        item.name.last
+                          .toLowerCase()
+                          .includes(this.state.getSearch.toLowerCase()) ||
+                        item.email
+                          .toLowerCase()
+                          .includes(this.state.getSearch.toLowerCase())
+                      );
+                    })
                     .map((column, index) => {
                       return (
                         <>
@@ -317,7 +331,6 @@ function outerFunction(param) {
 }
 
 console.log(outerFunction("Hello")());
-
 
 // module pattern
 var myModule = (function () {
