@@ -136,15 +136,13 @@ class App extends Component {
               }}
             />
           </div>
-          <div>
+          {/* <div>
             <button
             // onClick={this.getItemsNames}
             >
               Searching
             </button>
-            {/* <Button onClick={this.resetFilter()}>Reset Filter</Button> */}
-          </div>
-          {/* {this.state.getGender} */}
+          </div> */}
           <div>
             <Autocomplete
               disablePortal
@@ -187,11 +185,11 @@ class App extends Component {
                 </TableHead>
                 <TableBody>
                   {this.state.items
-                    // .slice(
-                    //   this.state.page * this.state.rowsPerPage,
-                    //   this.state.page * this.state.rowsPerPage +
-                    //     this.state.rowsPerPage
-                    // )
+                    .slice(
+                      this.state.page * this.state.rowsPerPage,
+                      this.state.page * this.state.rowsPerPage +
+                        this.state.rowsPerPage
+                    )
                     .filter((item) => {
                       return (
                         item.name.first
