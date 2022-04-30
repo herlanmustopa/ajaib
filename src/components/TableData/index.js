@@ -46,23 +46,7 @@ class App extends Component {
   }
   resetFilter = () => {
     // this.state.getGender = "";
-    this.setState({ getGender: "" });
-    let url = `https://randomuser.me/api/?page=${this.state.page + 1}&results=${
-      this.state.rowsPerPage
-    }&seed=abc`;
-    // let url = `https://randomuser.me/api/?results=20`;
-    // let url = "https://jsonplaceholder.typicode.com/users";
-    console.log("DATA NI" + url);
-    fetch(url)
-      .then((res) => res.json())
-      .then((items) => {
-        console.log(items.results, "items");
-        this.setState({
-          items: items.results,
-          totalRows: items.info.results,
-        });
-      })
-      .catch((err) => console.log(err));
+    this.setState({ getSearch: "" });
   };
   getItemsGender(value) {
     // let url = `https://randomuser.me/api/?results=20&inc=gender${this.state.getGender}`;
@@ -129,6 +113,7 @@ class App extends Component {
               label="Search"
               variant="outlined"
               size="small"
+              // value={this.state.getSearch}
               sx={{ mr: 2 }}
               onChange={(event, newValue) => {
                 this.setState({ getSearch: event.target.value });
@@ -149,7 +134,7 @@ class App extends Component {
               disablePortal
               id="combo-box-demo"
               options={listgender}
-              // value={this.state.getGender}
+              // value={this.state.getSearch}
               // onChange={(event, newValue) => {
               //   this.getItemsGender(newValue);
               // }}
@@ -206,14 +191,18 @@ class App extends Component {
                           .toLowerCase()
                           .includes(this.state.getSearch.toLowerCase()) ||
                         item.gender
-                          .toLowerCase()
-                          .includes(this.state.getSearch.toLowerCase())
+                          .valueOf()
+                          .includes(this.state.getSearch.valueOf())
+                        // item.gender
+                        //   .valueOf()
+                        //   .includes(this.state.getSearch.valueOf())
                         //    ||
                         // item.gender
                         //   .toUpperCase()
                         //   .includes(this.state.getGender.toUpperCase())
                       );
                     })
+
                     .map((column, index) => {
                       return (
                         <>
